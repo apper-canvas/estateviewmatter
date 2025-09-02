@@ -33,12 +33,12 @@ const PropertyGrid = ({ properties, loading, error, onRetry, onClearFilters }) =
     >
       {properties.map((property, index) => (
         <motion.div
-          key={property.Id}
+key={property.Id}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.3, delay: index * 0.1 }}
         >
-          <PropertyCard property={property} />
+<PropertyCard property={property} />
         </motion.div>
       ))}
     </motion.div>

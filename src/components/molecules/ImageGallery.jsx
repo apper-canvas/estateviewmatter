@@ -7,12 +7,28 @@ const ImageGallery = ({ images, alt }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isFullscreen, setIsFullscreen] = useState(false);
 
+  // Ensure images is an array and not empty
+  const imageArray = Array.isArray(images) ? images : [];
+  
+  if (imageArray.length === 0) {
+    return (
+      <div className="relative bg-neutral-100 rounded-xl overflow-hidden">
+        <div className="aspect-[16/10] flex items-center justify-center">
+          <div className="text-center text-neutral-500">
+            <ApperIcon name="Image" className="h-12 w-12 mx-auto mb-2" />
+            <p>No images available</p>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   const nextImage = () => {
-    setCurrentIndex((prev) => (prev + 1) % images.length);
+    setCurrentIndex((prev) => (prev + 1) % imageArray.length);
   };
 
   const prevImage = () => {
-    setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
+    setCurrentIndex((prev) => (prev - 1 + imageArray.length) % imageArray.length);
   };
 
   const openFullscreen = () => {
@@ -29,14 +45,14 @@ const ImageGallery = ({ images, alt }) => {
         {/* Main image */}
         <div className="aspect-[16/10] relative">
           <img 
-            src={images[currentIndex]} 
+            src={imageArray[currentIndex]} 
             alt={`${alt} - Image ${currentIndex + 1}`}
             className="w-full h-full object-cover cursor-pointer"
             onClick={openFullscreen}
           />
           
           {/* Navigation arrows */}
-          {images.length > 1 && (
+          {imageArray.length > 1 && (
             <>
               <Button
                 variant="ghost"
@@ -69,15 +85,15 @@ const ImageGallery = ({ images, alt }) => {
           
           {/* Image counter */}
           <div className="absolute bottom-4 right-4 bg-black/50 text-white px-3 py-1 rounded-full text-sm">
-            {currentIndex + 1} / {images.length}
+            {currentIndex + 1} / {imageArray.length}
           </div>
         </div>
         
         {/* Thumbnail strip */}
-        {images.length > 1 && (
+        {imageArray.length > 1 && (
           <div className="p-4 bg-white">
             <div className="flex gap-2 overflow-x-auto">
-              {images.map((image, index) => (
+              {imageArray.map((image, index) => (
                 <button
                   key={index}
                   onClick={() => setCurrentIndex(index)}
@@ -109,7 +125,7 @@ const ImageGallery = ({ images, alt }) => {
           >
             <div className="relative max-w-7xl max-h-full">
               <img 
-                src={images[currentIndex]} 
+                src={imageArray[currentIndex]} 
                 alt={`${alt} - Image ${currentIndex + 1}`}
                 className="max-w-full max-h-full object-contain"
                 onClick={(e) => e.stopPropagation()}
@@ -126,7 +142,7 @@ const ImageGallery = ({ images, alt }) => {
               </Button>
               
               {/* Navigation in fullscreen */}
-              {images.length > 1 && (
+              {imageArray.length > 1 && (
                 <>
                   <Button
                     variant="ghost"
@@ -149,7 +165,7 @@ const ImageGallery = ({ images, alt }) => {
               
               {/* Image counter in fullscreen */}
               <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-white/20 text-white px-4 py-2 rounded-full text-sm">
-                {currentIndex + 1} / {images.length}
+                {currentIndex + 1} / {imageArray.length}
               </div>
             </div>
           </motion.div>

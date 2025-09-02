@@ -13,7 +13,7 @@ const PropertyDetails = ({ property }) => {
   const saved = isSaved(property.Id);
 
   const handleSaveToggle = () => {
-    if (saved) {
+if (saved) {
       unsaveProperty(property.Id);
       toast.success("Property removed from saved");
     } else {
@@ -31,7 +31,7 @@ const PropertyDetails = ({ property }) => {
   };
 
   const details = [
-    { icon: "Bed", label: "Bedrooms", value: property.bedrooms },
+{ icon: "Bed", label: "Bedrooms", value: property.bedrooms },
     { icon: "Bath", label: "Bathrooms", value: property.bathrooms },
     { icon: "Square", label: "Square Feet", value: formatNumber(property.sqft) },
     { icon: "Calendar", label: "Year Built", value: property.yearBuilt },
@@ -47,13 +47,13 @@ const PropertyDetails = ({ property }) => {
       className="space-y-8"
     >
       {/* Image Gallery */}
-      <ImageGallery images={property.images} alt={property.title} />
+<ImageGallery images={property.images} alt={property.title} />
 
       {/* Header */}
       <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-6">
         <div className="flex-1">
           <div className="flex items-center gap-3 mb-3">
-            <Badge 
+<Badge 
               variant={property.status === "for-sale" ? "success" : "primary"}
               className="text-sm px-3 py-1"
             >
@@ -65,7 +65,7 @@ const PropertyDetails = ({ property }) => {
           </div>
           
           <h1 className="text-3xl lg:text-4xl font-display font-bold text-neutral-900 mb-4">
-            {property.title}
+{property.title}
           </h1>
           
           <div className="flex items-center gap-2 text-neutral-600 mb-4">
@@ -104,7 +104,7 @@ const PropertyDetails = ({ property }) => {
           <Card className="p-6">
             <h2 className="text-xl font-display font-semibold text-neutral-900 mb-6">Property Details</h2>
             <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
-              {details.map((detail, index) => (
+{details.map((detail, index) => (
                 <div key={index} className="flex items-center gap-3">
                   <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-primary-50 to-secondary-50 flex items-center justify-center">
                     <ApperIcon name={detail.icon} className="h-5 w-5 text-primary-600" />
@@ -121,11 +121,11 @@ const PropertyDetails = ({ property }) => {
           {/* Description */}
           <Card className="p-6">
             <h2 className="text-xl font-display font-semibold text-neutral-900 mb-4">Description</h2>
-            <p className="text-neutral-700 leading-relaxed">{property.description}</p>
+<p className="text-neutral-700 leading-relaxed">{property.description}</p>
           </Card>
 
           {/* Amenities */}
-          {property.amenities && property.amenities.length > 0 && (
+{property.amenities && property.amenities.length > 0 && (
             <Card className="p-6">
               <h2 className="text-xl font-display font-semibold text-neutral-900 mb-6">Amenities</h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -153,7 +153,7 @@ const PropertyDetails = ({ property }) => {
               </div>
             </div>
             <p className="text-sm text-neutral-600">
-              {property.address}<br />
+{property.address}<br />
               {property.city}, {property.state} {property.zipCode}
             </p>
           </Card>

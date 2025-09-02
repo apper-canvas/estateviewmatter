@@ -7,7 +7,6 @@ import FilterSidebar from "@/components/organisms/FilterSidebar";
 import PropertyGrid from "@/components/organisms/PropertyGrid";
 import ApperIcon from "@/components/ApperIcon";
 import { propertyService } from "@/services/api/propertyService";
-
 const PropertiesPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [properties, setProperties] = useState([]);
@@ -25,7 +24,7 @@ const PropertiesPage = () => {
     search: searchParams.get("search") || "",
   });
 
-  const loadProperties = async () => {
+const loadProperties = async () => {
     try {
       setLoading(true);
       setError(null);
@@ -38,11 +37,11 @@ const PropertiesPage = () => {
     }
   };
 
-  useEffect(() => {
+useEffect(() => {
     loadProperties();
   }, []);
 
-  useEffect(() => {
+useEffect(() => {
     let filtered = [...properties];
 
     // Search filter
@@ -105,7 +104,7 @@ const PropertiesPage = () => {
     setFilteredProperties(filtered);
   }, [properties, filters, sortBy]);
 
-  const handleFiltersChange = (newFilters) => {
+const handleFiltersChange = (newFilters) => {
     setFilters(newFilters);
   };
 
@@ -127,7 +126,7 @@ const PropertiesPage = () => {
     { value: "price-high", label: "Price: High to Low" },
   ];
 
-  const activeFiltersCount = (
+const activeFiltersCount = (
     (filters.propertyTypes.length > 0 ? 1 : 0) +
     (filters.bedroomsMin > 0 ? 1 : 0) +
     (filters.bathroomsMin > 0 ? 1 : 0) +
@@ -157,7 +156,7 @@ const PropertiesPage = () => {
               <h1 className="text-3xl font-display font-bold text-neutral-900 mb-2">
                 Properties for You
               </h1>
-              <p className="text-neutral-600">
+<p className="text-neutral-600">
                 {loading ? "Loading..." : `${filteredProperties.length} properties found`}
               </p>
             </div>
@@ -205,7 +204,7 @@ const PropertiesPage = () => {
             >
               <div className="flex items-center gap-2 flex-wrap">
                 <span className="text-sm text-neutral-600">Active filters:</span>
-                {filters.search && (
+{filters.search && (
                   <span className="inline-flex items-center gap-1 bg-primary-100 text-primary-700 px-3 py-1 rounded-full text-sm">
                     Search: "{filters.search}"
                   </span>
@@ -239,7 +238,7 @@ const PropertiesPage = () => {
           )}
 
           {/* Property Grid */}
-          <PropertyGrid
+<PropertyGrid
             properties={filteredProperties}
             loading={loading}
             error={error}

@@ -7,15 +7,14 @@ import Loading from "@/components/ui/Loading";
 import Error from "@/components/ui/Error";
 import ApperIcon from "@/components/ApperIcon";
 import { propertyService } from "@/services/api/propertyService";
-
 const PropertyDetailPage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const [property, setProperty] = useState(null);
+const [property, setProperty] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const loadProperty = async () => {
+const loadProperty = async () => {
     try {
       setLoading(true);
       setError(null);
@@ -28,7 +27,7 @@ const PropertyDetailPage = () => {
     }
   };
 
-  useEffect(() => {
+useEffect(() => {
     if (id) {
       loadProperty();
     }
@@ -42,7 +41,7 @@ const PropertyDetailPage = () => {
     );
   }
 
-  if (error || !property) {
+if (error || !property) {
     return (
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <Error message={error} onRetry={loadProperty} />
@@ -68,7 +67,7 @@ const PropertyDetailPage = () => {
         </Button>
       </motion.div>
 
-      <PropertyDetails property={property} />
+<PropertyDetails property={property} />
     </div>
   );
 };
